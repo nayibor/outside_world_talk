@@ -1,14 +1,15 @@
 ##to run elixir nifs run below commands
-elixirc NifElixir.ex
 gcc -I/usr/lib/erlang/erts-12.0.3/include/ -o nifelixir.so -fpic -shared complex.c nif_elixir.c
+elixirc NifElixir.ex
+
 iex
 >> Elixir.NifElixir.foo(1)
 >> Elixir.NifElixir.bar(1)
 
 
 ##to run erlang ports run below commands
-erlc raw_erlang_port.erl
 gcc -o rawport complex.c erl_comm.c port.c
+erlc raw_erlang_port.erl
 >>raw_erlang_port:start("./rawport")
 >>raw_erlang_port:foo(1)
 >>raw_erlang_port:bar(2)
